@@ -18,7 +18,7 @@ builder.Services.AddDbContext<DataContext>(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v2", new OpenApiInfo { Title = "Agenda_API6", Version = "v2" });
+    c.SwaggerDoc("v3", new OpenApiInfo { Title = "Agenda_API6", Version = "v3" });
 });
 
 builder.Services.AddScoped<ISchedule, ScheduleService>();
@@ -31,7 +31,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI(c =>
     {
-        c.SwaggerEndpoint("/swagger/v2/swagger.json", "Agenda_API6");
+        c.SwaggerEndpoint("/swagger/v3/swagger.json", "Agenda_API6");
     });
 }
 

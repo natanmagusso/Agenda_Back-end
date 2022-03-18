@@ -14,6 +14,12 @@ namespace Agenda_API6.Domain.Interfaces
         Task<List<ScheduleResponse>> GetAllAsync();
 
         /// <summary>
+        /// Method GetId.
+        /// </summary>
+        /// <param name="id">Field id.</param>
+        Task<ScheduleResponse> GetIdAsync(int id);
+
+        /// <summary>
         /// Method Insert.
         /// </summary>
         /// <param name="request">Class request.</param>

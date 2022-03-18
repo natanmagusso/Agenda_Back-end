@@ -41,6 +41,25 @@ namespace Agenda_API6.Domain.Services
         }
 
         /// <summary>
+        /// Method GetId.
+        /// </summary>
+        /// <param name="id">Field id.</param>
+        public async Task<ScheduleResponse> GetIdAsync(int id)
+        {
+            return await _dataContext
+                .Schedules
+                .AsNoTracking()
+                .Where(Sch => Sch.Id == id)
+                .Select(Sch => new ScheduleResponse()
+                {
+                    Id = Sch.Id,
+                    Name = Sch.Name,
+                    Email = Sch.Email,
+                    CellPhone = Sch.CellPhone
+                }).FirstOrDefaultAsync();
+        }
+
+        /// <summary>
         /// Method Insert.
         /// </summary>
         /// <param name="request">Class request.</param>

@@ -39,12 +39,32 @@ namespace Agenda_API6.Controllers
         {
             try
             {
-                List<ScheduleResponse>? escolas = await _scheduleInterface.GetAllAsync();
-                return Ok(escolas);
+                List<ScheduleResponse>? schedules = await _scheduleInterface.GetAllAsync();
+                return Ok(schedules);
             }
             catch (Exception ex)
             {
                 _logger.LogError("Não foi possível consultar os registros: " + ex.Message);
+                return new StatusCodeResult(500);
+            }
+        }
+
+        /// <summary>
+        /// Method GetId.
+        /// </summary>
+        /// <param name="id">Field id.</param>
+        [HttpGet("GetId/{id}")]
+        public async Task<IActionResult> ConsultarAlunoIdAsync([FromRoute] int id)
+        {
+            try
+            {
+                ScheduleResponse? schedule = await _scheduleInterface.GetIdAsync(id);
+                if (schedule == null) return NotFound();
+                return Ok(schedule);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Não foi possível consultar o registro: " + ex.Message);
                 return new StatusCodeResult(500);
             }
         }
